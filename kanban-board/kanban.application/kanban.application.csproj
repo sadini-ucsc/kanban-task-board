@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\kanban.domain\kanban.domain.csproj" />
+    <ProjectReference Include="..\kanban.infrastructure\kanban.infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>
