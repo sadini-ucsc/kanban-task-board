@@ -41,5 +41,16 @@ namespace kanban.api.controllers
 
             return CreatedAtAction(nameof(GetById), new { id = dto.Id }, dto);
         }
+
+        [HttpPut("{id:guid}")]
+        public async Task<ActionResult<KanbanTaskDto>> Update(Guid id, UpdateKanbanTaskRequest request, CancellationToken cancellationToken)
+        {
+            var dto = await taskService.UpdateAsync(id, request, cancellationToken);
+
+            if (dto is null)
+                return NotFound();
+
+            return Ok(dto);
+        }
     }
 }

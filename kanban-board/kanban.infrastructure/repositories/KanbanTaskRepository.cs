@@ -37,5 +37,16 @@ namespace kanban.infrastructure.repositories
 
             return task;
         }
+
+        public async Task<KanbanTask> UpdateAsync(KanbanTask task, CancellationToken cancellationToken)
+        {
+            ArgumentNullException.ThrowIfNull(task);
+
+            dbContext.KanbanTasks.Update(task);
+
+            await dbContext.SaveChangesAsync(cancellationToken);
+
+            return task;
+        }
     }
 }

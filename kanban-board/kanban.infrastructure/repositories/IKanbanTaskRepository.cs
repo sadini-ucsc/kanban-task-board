@@ -7,6 +7,7 @@ namespace kanban.infrastructure.repositories
         Task<KanbanTask?> GetByIdAsync(Guid id, CancellationToken cancellationToken);
         Task<IEnumerable<KanbanTask>> GetAllAsync(CancellationToken cancellationToken);
         Task<KanbanTask> CreateAsync(KanbanTask task, CancellationToken cancellationToken);
+        Task<KanbanTask> UpdateAsync(KanbanTask task, CancellationToken cancellationToken);
     }
 
 }
