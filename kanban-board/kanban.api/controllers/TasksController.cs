@@ -52,5 +52,16 @@ namespace kanban.api.controllers
 
             return Ok(dto);
         }
+
+        [HttpDelete("{id:guid}")]
+        public async Task<IActionResult> Delete(Guid id, CancellationToken cancellationToken)
+        {
+            var deleted = await taskService.DeleteAsync(id, cancellationToken);
+
+            if (!deleted)
+                return NotFound();
+
+            return NoContent();
+        }
     }
 }

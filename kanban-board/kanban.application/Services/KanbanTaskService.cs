@@ -82,6 +82,18 @@ namespace kanban.application.services
             return MapToDto(entity);
         }
 
+        public async Task<bool> DeleteAsync(Guid id, CancellationToken cancellationToken)
+        {
+            var entity = await repository.GetByIdAsync(id, cancellationToken);
+
+            if (entity is null)
+                return false;
+
+            await repository.DeleteAsync(entity, cancellationToken);
+
+            return true;
+        }
+
         private static KanbanTaskDto MapToDto(KanbanTask item)
         {
             return new KanbanTaskDto

@@ -8,6 +8,7 @@ namespace kanban.infrastructure.repositories
         Task<IEnumerable<KanbanTask>> GetAllAsync(CancellationToken cancellationToken);
         Task<KanbanTask> CreateAsync(KanbanTask task, CancellationToken cancellationToken);
         Task<KanbanTask> UpdateAsync(KanbanTask task, CancellationToken cancellationToken);
+        Task DeleteAsync(KanbanTask task, CancellationToken cancellationToken);
     }
 
 }
