@@ -94,6 +94,21 @@ namespace kanban.application.services
             return true;
         }
 
+        public async Task<bool> SoftDeleteAsync(Guid id, CancellationToken cancellationToken)
+        {
+            var entity = await repository.GetByIdAsync(id, cancellationToken);
+
+            if (entity is null)
+                return false;
+
+            entity.IsDeleted = true;
+            entity.UpdatedAt = DateTime.UtcNow;
+
+            await repository.UpdateAsync(entity, cancellationToken);
+
+            return true;
+        }
+
         private static KanbanTaskDto MapToDto(KanbanTask item)
         {
             return new KanbanTaskDto
@@ -102,6 +117,7 @@ namespace kanban.application.services
                 Title = item.Title,
                 Description = item.Description,
                 Status = item.Status,
+                IsDeleted = item.IsDeleted,
                 CreatedAt = item.CreatedAt,
                 UpdatedAt = item.UpdatedAt
             };

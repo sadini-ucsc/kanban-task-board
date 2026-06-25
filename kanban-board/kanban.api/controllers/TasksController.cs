@@ -56,7 +56,7 @@ namespace kanban.api.controllers
         [HttpDelete("{id:guid}")]
         public async Task<IActionResult> Delete(Guid id, CancellationToken cancellationToken)
         {
-            var deleted = await taskService.DeleteAsync(id, cancellationToken);
+            var deleted = await taskService.SoftDeleteAsync(id, cancellationToken);
 
             if (!deleted)
                 return NotFound();

@@ -9,5 +9,6 @@ namespace kanban.application.services
         Task<KanbanTaskDto> CreateAsync(CreateKanbanTaskRequest request, CancellationToken cancellationToken);
         Task<KanbanTaskDto?> UpdateAsync(Guid id, UpdateKanbanTaskRequest request, CancellationToken cancellationToken);
         Task<bool> DeleteAsync(Guid id, CancellationToken cancellationToken);
+        Task<bool> SoftDeleteAsync(Guid id, CancellationToken cancellationToken);
     }
 }
