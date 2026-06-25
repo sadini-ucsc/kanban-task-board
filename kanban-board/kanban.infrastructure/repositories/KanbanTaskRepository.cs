@@ -17,16 +17,25 @@ namespace kanban.infrastructure.repositories
         {
             return await dbContext.KanbanTasks
                 .AsNoTracking()
-                .FirstOrDefaultAsync(t => t.Id == id, cancellationToken)
-                .ConfigureAwait(false);
+                .FirstOrDefaultAsync(t => t.Id == id, cancellationToken);
         }
 
         public async Task<IEnumerable<KanbanTask>> GetAllAsync(CancellationToken cancellationToken)
         {
             return await dbContext.KanbanTasks
                 .AsNoTracking()
-                .ToListAsync(cancellationToken)
-                .ConfigureAwait(false);
+                .ToListAsync(cancellationToken);
+        }
+
+        public async Task<KanbanTask> CreateAsync(KanbanTask task, CancellationToken cancellationToken)
+        {
+            ArgumentNullException.ThrowIfNull(task);
+
+            await dbContext.KanbanTasks.AddAsync(task, cancellationToken);
+
+            await dbContext.SaveChangesAsync(cancellationToken);
+
+            return task;
         }
     }
 }

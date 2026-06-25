@@ -6,5 +6,6 @@ namespace kanban.application.services
     {
         Task<KanbanTaskDto?> GetByIdAsync(Guid id, CancellationToken cancellationToken);
         Task<IEnumerable<KanbanTaskDto>> GetAllAsync(CancellationToken cancellationToken);
+        Task<KanbanTaskDto> CreateAsync(CreateKanbanTaskRequest request, CancellationToken cancellationToken);
     }
 }

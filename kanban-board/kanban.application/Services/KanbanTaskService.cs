@@ -1,4 +1,5 @@
 ﻿using kanban.application.dtos;
+using kanban.domain.enums;
 using kanban.domain.models;
 using kanban.infrastructure.repositories;
 
@@ -28,6 +29,30 @@ namespace kanban.application.services
             var entities = await repository.GetAllAsync(cancellationToken);
 
             return entities.Select(MapToDto).ToList();
+        }
+
+        public async Task<KanbanTaskDto> CreateAsync(CreateKanbanTaskRequest request, CancellationToken cancellationToken)
+        {
+            ArgumentNullException.ThrowIfNull(request);
+
+            if (string.IsNullOrWhiteSpace(request.Title))
+            {
+                throw new ArgumentException("Title is required.", nameof(request));
+            }
+
+            var entity = new KanbanTask
+            {
+                Id = Guid.NewGuid(),
+                Title = request.Title,
+                Description = request.Description,
+                Status = KanbanTaskStatus.Todo,
+                CreatedAt = DateTime.UtcNow,
+                UpdatedAt = DateTime.UtcNow
+            };
+
+            var createdTask = await repository.CreateAsync(entity, cancellationToken);
+
+            return MapToDto(createdTask);
         }
 
         private static KanbanTaskDto MapToDto(KanbanTask item)

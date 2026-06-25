@@ -33,5 +33,13 @@ namespace kanban.api.controllers
 
             return Ok(dtos);
         }
+
+        [HttpPost]
+        public async Task<ActionResult<KanbanTaskDto>> Create(CreateKanbanTaskRequest request, CancellationToken cancellationToken)
+        {
+            var dto = await taskService.CreateAsync(request, cancellationToken);
+
+            return CreatedAtAction(nameof(GetById), new { id = dto.Id }, dto);
+        }
     }
 }
