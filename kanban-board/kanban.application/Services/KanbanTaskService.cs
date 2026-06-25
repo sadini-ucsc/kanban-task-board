@@ -1,11 +1,8 @@
-﻿using kanban.application.Dtos;
+﻿using kanban.application.dtos;
 using kanban.domain.models;
 using kanban.infrastructure.repositories;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace kanban.application.Services
+namespace kanban.application.services
 {
     public class KanbanTaskService : IKanbanTaskService
     {

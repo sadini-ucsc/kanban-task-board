@@ -1,4 +1,4 @@
-using kanban.application.Services;
+using kanban.application.services;
 using kanban.domain.enums;
 using kanban.domain.models;
 using kanban.infrastructure.persistence;

@@ -1,6 +1,6 @@
-﻿using kanban.application.Dtos;
+﻿using kanban.application.dtos;
 
-namespace kanban.application.Services
+namespace kanban.application.services
 {
     public interface IKanbanTaskService
     {

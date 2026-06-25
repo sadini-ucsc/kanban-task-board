@@ -1,5 +1,5 @@
-﻿using kanban.application.Dtos;
-using kanban.application.Services;
+﻿using kanban.application.dtos;
+using kanban.application.services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace kanban.api.controllers

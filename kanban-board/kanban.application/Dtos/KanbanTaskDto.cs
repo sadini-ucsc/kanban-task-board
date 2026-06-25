@@ -1,6 +1,6 @@
 ﻿using kanban.domain.enums;
 
-namespace kanban.application.Dtos
+namespace kanban.application.dtos
 {
     public class KanbanTaskDto
     {
