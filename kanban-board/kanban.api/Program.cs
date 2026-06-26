@@ -12,6 +12,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddOpenApi();
+builder.Services.AddSwaggerGen();
 
 // Register DbContext (InMemory)
 builder.Services.AddDbContext<KanbanDbContext>(options => options.UseInMemoryDatabase("KanbanDb"));
@@ -66,6 +67,10 @@ using (var scope = app.Services.CreateScope())
 if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
+
+    app.UseSwagger();
+    app.UseSwaggerUI();
+
     app.MapOpenApi();
 }
 
