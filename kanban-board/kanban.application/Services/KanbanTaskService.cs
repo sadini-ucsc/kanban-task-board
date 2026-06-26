@@ -35,10 +35,10 @@ namespace kanban.application.services
         {
             ArgumentNullException.ThrowIfNull(request);
 
-            if (string.IsNullOrWhiteSpace(request.Title))
+            /*if (string.IsNullOrWhiteSpace(request.Title))
             {
                 throw new ArgumentException("Title is required.", nameof(request));
-            }
+            }*/
 
             var entity = new KanbanTask
             {
@@ -65,8 +65,8 @@ namespace kanban.application.services
             if (entity is null)
                 throw new KeyNotFoundException($"Task with id {id} not found");
 
-            if (string.IsNullOrWhiteSpace(request.Title))
-                throw new ArgumentException("Title is required.", nameof(request));
+            /*if (string.IsNullOrWhiteSpace(request.Title))
+                throw new ArgumentException("Title is required.", nameof(request));*/
 
             entity.Title = request.Title;
             entity.Description = request.Description;

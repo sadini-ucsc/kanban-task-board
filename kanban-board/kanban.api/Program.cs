@@ -5,6 +5,10 @@ using kanban.domain.models;
 using kanban.infrastructure.persistence;
 using kanban.infrastructure.repositories;
 using Microsoft.EntityFrameworkCore;
+using FluentValidation;
+using FluentValidation.AspNetCore;
+
+using kanban.application.validators;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +17,9 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddOpenApi();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddValidatorsFromAssemblyContaining<CreateKanbanTaskRequestValidator>();
+builder.Services.AddFluentValidationAutoValidation();
 
 // Register DbContext (InMemory)
 builder.Services.AddDbContext<KanbanDbContext>(options => options.UseInMemoryDatabase("KanbanDb"));
