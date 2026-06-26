@@ -18,10 +18,7 @@ namespace kanban.api.controllers
         [HttpGet("{id:guid}")]
         public async Task<ActionResult<KanbanTaskDto>> GetById(Guid id, CancellationToken cancellationToken)
         {
-            var dto = await taskService.GetByIdAsync(id, cancellationToken).ConfigureAwait(false);
-
-            if (dto is null)
-                return NotFound();
+            var dto = await taskService.GetByIdAsync(id, cancellationToken);
 
             return Ok(dto);
         }
@@ -29,7 +26,7 @@ namespace kanban.api.controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<KanbanTaskDto>>> GetAll(CancellationToken cancellationToken)
         {
-            var dtos = await taskService.GetAllAsync(cancellationToken).ConfigureAwait(false);
+            var dtos = await taskService.GetAllAsync(cancellationToken);
 
             return Ok(dtos);
         }
@@ -47,9 +44,6 @@ namespace kanban.api.controllers
         {
             var dto = await taskService.UpdateAsync(id, request, cancellationToken);
 
-            if (dto is null)
-                return NotFound();
-
             return Ok(dto);
         }
 
@@ -58,10 +52,7 @@ namespace kanban.api.controllers
         {
             var deleted = await taskService.SoftDeleteAsync(id, cancellationToken);
 
-            if (!deleted)
-                return NotFound();
-
-            return NoContent();
+            return Ok(deleted);
         }
     }
 }

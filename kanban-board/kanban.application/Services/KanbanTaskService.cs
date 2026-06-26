@@ -19,7 +19,7 @@ namespace kanban.application.services
             var entity = await repository.GetByIdAsync(id, cancellationToken);
 
             if (entity is null)
-                return null;
+                throw new KeyNotFoundException($"Task with id {id} not found");
 
             return MapToDto(entity);
         }
@@ -46,6 +46,7 @@ namespace kanban.application.services
                 Title = request.Title,
                 Description = request.Description,
                 Status = KanbanTaskStatus.Todo,
+                IsDeleted = false,
                 CreatedAt = DateTime.UtcNow,
                 UpdatedAt = DateTime.UtcNow
             };
@@ -62,15 +63,10 @@ namespace kanban.application.services
             var entity = await repository.GetByIdAsync(id, cancellationToken);
 
             if (entity is null)
-                return null;
+                throw new KeyNotFoundException($"Task with id {id} not found");
 
             if (string.IsNullOrWhiteSpace(request.Title))
                 throw new ArgumentException("Title is required.", nameof(request));
-
-            if (entity.Status == KanbanTaskStatus.Done && request.Status != KanbanTaskStatus.Done)
-            {
-                throw new InvalidOperationException("Completed tasks cannot be moved back.");
-            }
 
             entity.Title = request.Title;
             entity.Description = request.Description;
@@ -87,7 +83,7 @@ namespace kanban.application.services
             var entity = await repository.GetByIdAsync(id, cancellationToken);
 
             if (entity is null)
-                return false;
+                throw new KeyNotFoundException($"Task with id {id} not found");
 
             await repository.DeleteAsync(entity, cancellationToken);
 
@@ -99,7 +95,7 @@ namespace kanban.application.services
             var entity = await repository.GetByIdAsync(id, cancellationToken);
 
             if (entity is null)
-                return false;
+                throw new KeyNotFoundException($"Task with id {id} not found");
 
             entity.IsDeleted = true;
             entity.UpdatedAt = DateTime.UtcNow;

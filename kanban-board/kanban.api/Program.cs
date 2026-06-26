@@ -1,3 +1,4 @@
+using kanban.api.middleware;
 using kanban.application.services;
 using kanban.domain.enums;
 using kanban.domain.models;
@@ -13,8 +14,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddOpenApi();
 
 // Register DbContext (InMemory)
-builder.Services.AddDbContext<KanbanDbContext>(options =>
-    options.UseInMemoryDatabase("KanbanDb"));
+builder.Services.AddDbContext<KanbanDbContext>(options => options.UseInMemoryDatabase("KanbanDb"));
 
 // Application / Infrastructure registrations
 builder.Services.AddScoped<IKanbanTaskRepository, KanbanTaskRepository>();
@@ -70,6 +70,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 app.MapControllers();
 
