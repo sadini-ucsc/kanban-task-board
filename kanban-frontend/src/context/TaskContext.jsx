@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useReducer } from "react";
-import { getTasks } from "../api/taskApi";
+import { getTasks, createTask as createTaskApi } from "../api/taskApi";
 import { initialState, taskReducer } from "./TaskReducer";
 
 const TaskContext = createContext();
@@ -27,8 +27,7 @@ export function TaskProvider({ children }) {
                 payload: tasks
             });
 
-        }
-        catch (error) {
+        } catch (error) {
 
             dispatch({
                 type: "LOAD_TASKS_FAILURE",
@@ -36,7 +35,25 @@ export function TaskProvider({ children }) {
             });
 
         }
+    }
 
+    async function createTask(task) {
+
+        try {
+
+            const createdTask = await createTaskApi(task);
+
+            dispatch({
+                type: "CREATE_TASK_SUCCESS",
+                payload: createdTask
+            });
+
+            return createdTask;
+
+        } catch (error) {
+
+            throw error;
+        }
     }
 
     return (
@@ -46,20 +63,17 @@ export function TaskProvider({ children }) {
                 tasks: state.tasks,
                 loading: state.loading,
                 error: state.error,
-                loadTasks
+
+                loadTasks,
+                createTask
             }}
         >
-
             {children}
-
         </TaskContext.Provider>
 
     );
-
 }
 
 export function useTasks() {
-
     return useContext(TaskContext);
-
 }

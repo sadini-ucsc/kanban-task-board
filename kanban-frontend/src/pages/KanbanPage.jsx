@@ -1,28 +1,42 @@
-import Board from "../components/Board/Board";
+import { useState } from "react";
 import { useTasks } from "../context/TaskContext";
+
+import Board from "../components/Board/Board";
+import TaskModal from "../components/TaskModal/TaskModal";
 
 function KanbanPage() {
 
     const { loading, error } = useTasks();
 
-    if (loading)
-        return <p>Loading tasks...</p>;
-
-    if (error)
-        return <p>{error}</p>;
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     return (
-
-        <div className="container">
+        <div className="kanban-page">
 
             <h1>Kanban Task Board</h1>
 
-            <Board />
+            {error && <div className="error">{error}</div>}
+
+            <button onClick={() => setIsModalOpen(true)}>
+                + Add Task
+            </button>
+
+            <br/>
+            <br/>
+
+            {loading ? (
+                <p>Loading tasks...</p>
+            ) : (
+                <Board />
+            )}
+
+            <TaskModal
+                isOpen={isModalOpen}
+                onClose={() => setIsModalOpen(false)}
+            />
 
         </div>
-
     );
-
 }
 
 export default KanbanPage;

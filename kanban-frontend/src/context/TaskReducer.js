@@ -29,6 +29,12 @@ export function taskReducer(state, action) {
                 error: action.payload
             };
 
+        case "CREATE_TASK_SUCCESS":
+            return {
+                ...state,
+                tasks: [...state.tasks, action.payload]
+            };
+
         default:
             return state;
     }
