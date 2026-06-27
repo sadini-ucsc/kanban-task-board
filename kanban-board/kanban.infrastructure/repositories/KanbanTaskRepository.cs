@@ -17,13 +17,15 @@ namespace kanban.infrastructure.repositories
         {
             return await dbContext.KanbanTasks
                 .AsNoTracking()
-                .FirstOrDefaultAsync(t => t.Id == id, cancellationToken);
+                .FirstOrDefaultAsync(t => t.Id == id && !t.IsDeleted, 
+                cancellationToken);
         }
 
         public async Task<IEnumerable<KanbanTask>> GetAllAsync(CancellationToken cancellationToken)
         {
             return await dbContext.KanbanTasks
                 .AsNoTracking()
+                .Where(t => !t.IsDeleted)
                 .ToListAsync(cancellationToken);
         }
 
