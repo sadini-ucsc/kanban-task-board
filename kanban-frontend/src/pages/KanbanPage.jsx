@@ -6,33 +6,64 @@ import TaskModal from "../components/TaskModal/TaskModal";
 
 function KanbanPage() {
 
-    const { loading, error } = useTasks();
+    const {
+        tasks,
+        loading,
+        error
+    } = useTasks();
 
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [selectedTask, setSelectedTask] = useState(null);
+
+    function handleAddTask() {
+        setSelectedTask(null);
+        setIsModalOpen(true);
+    }
+
+    function handleEdit(task) {
+        setSelectedTask(task);
+        setIsModalOpen(true);
+    }
+
+    function handleCloseModal() {
+        setIsModalOpen(false);
+        setSelectedTask(null);
+    }
 
     return (
         <div className="kanban-page">
 
             <h1>Kanban Task Board</h1>
 
-            {error && <div className="error">{error}</div>}
+            {error && (
+                <div className="error">
+                    {error}
+                </div>
+            )}
 
-            <button onClick={() => setIsModalOpen(true)}>
+            <button
+                type="button"
+                onClick={handleAddTask}
+            >
                 + Add Task
             </button>
 
-            <br/>
-            <br/>
+            <br />
+            <br />
 
             {loading ? (
                 <p>Loading tasks...</p>
             ) : (
-                <Board />
+                <Board
+                    tasks={tasks}
+                    onEdit={handleEdit}
+                />
             )}
 
             <TaskModal
                 isOpen={isModalOpen}
-                onClose={() => setIsModalOpen(false)}
+                task={selectedTask}
+                onClose={handleCloseModal}
             />
 
         </div>

@@ -1,27 +1,17 @@
-import { useTasks } from "../../context/TaskContext";
 import TaskCard from "../TaskCard/TaskCard";
 
-function Column({ label, status }) {
-
-    const { tasks } = useTasks();
-
-    const filteredTasks = tasks.filter(
-        task => task.status === status
-    );
+function Column({ title, tasks, onEdit }) {
 
     return (
         <div className="board-column">
 
-            <h2>{label}</h2>
+            <h2>{title}</h2>
 
-            {filteredTasks.length === 0 && (
-                <p style={{ color: "#888" }}>No tasks</p>
-            )}
-
-            {filteredTasks.map(task => (
+            {tasks.map(task => (
                 <TaskCard
                     key={task.id}
                     task={task}
+                    onEdit={onEdit}
                 />
             ))}
 

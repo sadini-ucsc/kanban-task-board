@@ -3,7 +3,7 @@ import { useState } from "react";
 import ConfirmationModal from "../ConfirmationModal/ConfirmationModal";
 import { useTasks } from "../../context/TaskContext";
 
-function TaskCard({ task }) {
+function TaskCard({ task, onEdit }) {
 
     const { deleteTask } = useTasks();
 
@@ -46,9 +46,25 @@ function TaskCard({ task }) {
 
             </div>
 
-            <button onClick={() => setShowDeleteModal(true)}>
-                Delete
-            </button>
+            <br />
+
+            <div className="task-card-actions">
+
+                <button
+                    type="button"
+                    onClick={() => onEdit(task)}
+                >
+                    Edit
+                </button>
+
+                <button
+                    type="button"
+                    onClick={() => setShowDeleteModal(true)}
+                >
+                    Delete
+                </button>
+
+            </div>
 
             <ConfirmationModal
                 isOpen={showDeleteModal}

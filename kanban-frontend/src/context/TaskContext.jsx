@@ -2,7 +2,8 @@ import { createContext, useContext, useEffect, useReducer } from "react";
 import { 
     getTasks, 
     createTask as createTaskApi,
-    deleteTask as deleteTaskApi } from "../api/taskApi";
+    deleteTask as deleteTaskApi,
+    updateTask as updateTaskApi } from "../api/taskApi";
 import { initialState, taskReducer } from "./TaskReducer";
 
 const TaskContext = createContext();
@@ -81,6 +82,25 @@ export function TaskProvider({ children }) {
         }
     }
 
+    async function updateTask(task) {
+
+        try {
+
+            const updatedTask = await updateTaskApi(task);
+
+            dispatch({
+                type: "UPDATE_TASK_SUCCESS",
+                payload: updatedTask
+            });
+
+            return updatedTask;
+
+        } catch (error) {
+
+            throw error;
+        }
+    }
+
     return (
 
         <TaskContext.Provider
@@ -91,7 +111,8 @@ export function TaskProvider({ children }) {
 
                 loadTasks,
                 createTask,
-                deleteTask
+                deleteTask,
+                updateTask
             }}
         >
             {children}

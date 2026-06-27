@@ -1,26 +1,40 @@
 import Column from "../Column/Column";
 import { KanbanTaskStatus } from "../../enums/KanbanTaskStatus";
 
-function Board() {
+function Board({ tasks, onEdit }) {
+
+    const todoTasks = tasks.filter(
+        task => task.status === KanbanTaskStatus.Todo.value
+    );
+
+    const inProgressTasks = tasks.filter(
+        task => task.status === KanbanTaskStatus.InProgress.value
+    );
+
+    const doneTasks = tasks.filter(
+        task => task.status === KanbanTaskStatus.Done.value
+    );
 
     return (
         <div className="board">
 
             <Column
-                label={KanbanTaskStatus.Todo.label}
-                status={KanbanTaskStatus.Todo.value}
+                title={KanbanTaskStatus.Todo.label}
+                tasks={todoTasks}
+                onEdit={onEdit}
             />
 
             <Column
-                label={KanbanTaskStatus.InProgress.label}
-                status={KanbanTaskStatus.InProgress.value}
+                title={KanbanTaskStatus.InProgress.label}
+                tasks={inProgressTasks}
+                onEdit={onEdit}
             />
 
             <Column
-                label={KanbanTaskStatus.Done.label}
-                status={KanbanTaskStatus.Done.value}
+                title={KanbanTaskStatus.Done.label}
+                tasks={doneTasks}
+                onEdit={onEdit}
             />
-
 
         </div>
     );

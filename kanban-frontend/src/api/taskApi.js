@@ -24,3 +24,10 @@ export async function deleteTask(id) {
 
     return response.data;
 }
+
+export async function updateTask(task) {
+
+    const response = await axios.put(`${TASKS_API_URL}/${task.id}`, task);
+
+    return response.data;
+}

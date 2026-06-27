@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { useTasks } from "../../context/TaskContext";
 
-function TaskModal({ isOpen, onClose }) {
+function TaskModal({ isOpen, onClose, task }) {
 
-    const { createTask } = useTasks();
+    const { createTask, updateTask } = useTasks();
 
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
@@ -17,12 +17,20 @@ function TaskModal({ isOpen, onClose }) {
             return;
         }
 
-        setTitle("");
-        setDescription("");
-        setErrors({});
+        if (task) {
+
+            setTitle(task.title);
+            setDescription(task.description);
+
+        } else {
+
+            setTitle("");
+            setDescription("");
+        }
+
         setApiError("");
 
-    }, [isOpen]);
+    }, [isOpen, task]);
 
     if (!isOpen) return null;
 
@@ -49,25 +57,6 @@ function TaskModal({ isOpen, onClose }) {
 
         e.preventDefault();
 
-        if (!validate()) return;
-
-        await createTask({
-            title,
-            description
-        });
-
-        setTitle("");
-        setDescription("");
-        setErrors({});
-        setApiError("");
-
-        onClose();
-    }
-
-    async function handleSubmit(e) {
-
-        e.preventDefault();
-
         setApiError("");
 
         if (!validate()) {
@@ -76,10 +65,23 @@ function TaskModal({ isOpen, onClose }) {
 
         try {
 
-            await createTask({
-                title,
-                description
-            });
+            if (task) {
+
+                await updateTask({
+                    id: task.id,
+                    title,
+                    description,
+                    status: task.status,
+                    createdAt: task.createdAt
+                });
+
+            } else {
+
+                await createTask({
+                    title,
+                    description
+                });
+            }
 
             setTitle("");
             setDescription("");
@@ -92,7 +94,8 @@ function TaskModal({ isOpen, onClose }) {
 
             const message =
                 error.response?.data?.error ??
-                "Unable to create task.";
+                error.response?.data?.message ??
+                "Unable to save task.";
 
             setApiError(message);
         }
@@ -103,7 +106,7 @@ function TaskModal({ isOpen, onClose }) {
 
             <div className="modal">
 
-                <h2>Add Task</h2>
+                <h2> {task ? "Edit Task" : "Add Task"} </h2>
 
                 <form onSubmit={handleSubmit}>
 
@@ -139,7 +142,7 @@ function TaskModal({ isOpen, onClose }) {
 
                     <div className="modal-actions">
 
-                        <button type="submit">Save</button>
+                        <button type="submit">{task ? "Update" : "Create"}</button>
 
                         <button
                             type="button"
