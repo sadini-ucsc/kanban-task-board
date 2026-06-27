@@ -1,5 +1,8 @@
 import { createContext, useContext, useEffect, useReducer } from "react";
-import { getTasks, createTask as createTaskApi } from "../api/taskApi";
+import { 
+    getTasks, 
+    createTask as createTaskApi,
+    deleteTask as deleteTaskApi } from "../api/taskApi";
 import { initialState, taskReducer } from "./TaskReducer";
 
 const TaskContext = createContext();
@@ -56,6 +59,28 @@ export function TaskProvider({ children }) {
         }
     }
 
+    async function deleteTask(id) {
+
+        try {
+
+            const deleted = await deleteTaskApi(id);
+
+            if (deleted) {
+
+                dispatch({
+                    type: "DELETE_TASK_SUCCESS",
+                    payload: id
+                });
+            }
+
+            return deleted;
+
+        } catch (error) {
+
+            throw error;
+        }
+    }
+
     return (
 
         <TaskContext.Provider
@@ -65,7 +90,8 @@ export function TaskProvider({ children }) {
                 error: state.error,
 
                 loadTasks,
-                createTask
+                createTask,
+                deleteTask
             }}
         >
             {children}

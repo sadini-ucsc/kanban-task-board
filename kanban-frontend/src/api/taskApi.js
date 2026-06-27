@@ -17,3 +17,10 @@ export async function createTask(task) {
     return response.data;
 
 }
+
+export async function deleteTask(id) {
+
+    const response = await axios.delete(`${TASKS_API_URL}/${id}`);
+
+    return response.data;
+}
