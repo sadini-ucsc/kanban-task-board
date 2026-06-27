@@ -39,15 +39,39 @@ h1 {
 }
 
 .task-card {
-    background: #f9f9f9;
-    padding: 10px;
-    margin: 10px 0;
+    background: #ffffff;
+    border: 1px solid #dcdcdc;
     border-radius: 6px;
-    border: 1px solid #eee;
+    padding: 12px;
+    margin-bottom: 12px;
     cursor: pointer;
+    transition: box-shadow 0.2s ease;
 }
 
-.task-card strong {
-    display: block;
-    margin-bottom: 5px;
+.task-card:hover {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.task-card h3 {
+    margin: 0 0 8px 0;
+    font-size: 16px;
+}
+
+.task-card p {
+    margin: 0;
+    color: #555;
+    font-size: 14px;
+}
+
+.task-card-dates {
+    margin-top: 12px;
+    padding-top: 10px;
+    border-top: 1px solid #eeeeee;
+    font-size: 12px;
+    color: #777777;
+    line-height: 1.4;
+}
+
+.task-card-dates div {
+    margin-top: 2px;
 }

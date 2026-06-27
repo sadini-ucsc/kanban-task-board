@@ -1,4 +1,5 @@
 import { useTasks } from "../../context/TaskContext";
+import TaskCard from "../TaskCard/TaskCard";
 
 function Column({ label, status }) {
 
@@ -18,10 +19,10 @@ function Column({ label, status }) {
             )}
 
             {filteredTasks.map(task => (
-                <div key={task.id} className="task-card">
-                    <strong>{task.title}</strong>
-                    <p>{task.description}</p>
-                </div>
+                <TaskCard
+                    key={task.id}
+                    task={task}
+                />
             ))}
 
         </div>
