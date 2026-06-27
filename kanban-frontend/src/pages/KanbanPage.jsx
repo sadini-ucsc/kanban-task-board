@@ -1,42 +1,31 @@
-import { useEffect, useState } from "react";
-import { getTasks } from "../api/taskApi";
+import { useTasks } from "../context/TaskContext";
 
 function KanbanPage() {
 
-    const [tasks, setTasks] = useState([]);
+    const { tasks, loading, error } = useTasks();
 
-    useEffect(() => {
+    if (loading)
+        return <p>Loading tasks...</p>;
 
-        async function loadTasks() {
-
-            try {
-
-                const data = await getTasks();
-                setTasks(data);
-
-            } catch (error) {
-
-                console.error(error);
-
-            }
-
-        }
-
-        loadTasks();
-
-    }, []);
+    if (error)
+        return <p>{error}</p>;
 
     return (
+
         <div className="container">
 
             <h1>Kanban Task Board</h1>
 
             <pre>
+
                 {JSON.stringify(tasks, null, 2)}
+
             </pre>
 
         </div>
+
     );
+
 }
 
 export default KanbanPage;
