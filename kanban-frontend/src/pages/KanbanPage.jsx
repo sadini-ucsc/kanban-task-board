@@ -1,8 +1,9 @@
+import Board from "../components/Board/Board";
 import { useTasks } from "../context/TaskContext";
 
 function KanbanPage() {
 
-    const { tasks, loading, error } = useTasks();
+    const { loading, error } = useTasks();
 
     if (loading)
         return <p>Loading tasks...</p>;
@@ -16,11 +17,7 @@ function KanbanPage() {
 
             <h1>Kanban Task Board</h1>
 
-            <pre>
-
-                {JSON.stringify(tasks, null, 2)}
-
-            </pre>
+            <Board />
 
         </div>
 
