@@ -166,3 +166,25 @@ button {
 .task-card-actions button {
     flex: 1;
 }
+
+.drag-handle {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    cursor: grab;
+    color: #6b7280;
+    margin-bottom: 0.5rem;
+    user-select: none;
+}
+
+.drag-handle:active {
+    cursor: grabbing;
+}
+
+.drag-handle svg {
+    transition: color 0.2s ease;
+}
+
+.drag-handle:hover svg {
+    color: #2563eb;
+}

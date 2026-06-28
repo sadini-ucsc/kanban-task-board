@@ -4,6 +4,8 @@ import { useTasks } from "../context/TaskContext";
 import Board from "../components/Board/Board";
 import TaskModal from "../components/TaskModal/TaskModal";
 
+import { DndContext, closestCorners } from "@dnd-kit/core";
+
 function KanbanPage() {
 
     const {
@@ -14,6 +16,8 @@ function KanbanPage() {
 
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedTask, setSelectedTask] = useState(null);
+
+    const { updateTask } = useTasks();
 
     function handleAddTask() {
         setSelectedTask(null);
@@ -28,6 +32,25 @@ function KanbanPage() {
     function handleCloseModal() {
         setIsModalOpen(false);
         setSelectedTask(null);
+    }
+
+    async function handleDragEnd(event) {
+
+        const { active, over } = event;
+
+        if (!over) return;
+
+        const taskId = active.id;
+        const newStatus = over.id;
+
+        const task = tasks.find(t => t.id === taskId);
+
+        if (!task || task.status === newStatus) return;
+
+        await updateTask({
+            ...task,
+            status: Number(newStatus)
+        });
     }
 
     return (
@@ -54,10 +77,15 @@ function KanbanPage() {
             {loading ? (
                 <p>Loading tasks...</p>
             ) : (
-                <Board
-                    tasks={tasks}
-                    onEdit={handleEdit}
-                />
+                <DndContext
+                    collisionDetection={closestCorners}
+                    onDragEnd={handleDragEnd}
+                >
+                    <Board
+                        tasks={tasks}
+                        onEdit={handleEdit}
+                    />
+                </DndContext>
             )}
 
             <TaskModal

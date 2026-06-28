@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useDraggable } from "@dnd-kit/core";
+import { LuGripVertical } from "react-icons/lu";
 
 import ConfirmationModal from "../ConfirmationModal/ConfirmationModal";
 import { useTasks } from "../../context/TaskContext";
@@ -8,6 +10,18 @@ function TaskCard({ task, onEdit }) {
     const { deleteTask } = useTasks();
 
     const [showDeleteModal, setShowDeleteModal] = useState(false);
+
+    const { attributes, listeners, setNodeRef, transform, isDragging } =
+        useDraggable({
+            id: task.id
+        });
+
+    const style = {
+        transform: transform
+            ? `translate(${transform.x}px, ${transform.y}px)`
+            : undefined,
+        opacity: isDragging ? 0.5 : 1
+    };
 
     async function handleDelete() {
 
@@ -28,7 +42,19 @@ function TaskCard({ task, onEdit }) {
     }
 
     return (
-        <div className="task-card">
+        <div
+            ref={setNodeRef}
+            style={style}
+            className="task-card"
+        >
+            <div
+                className="drag-handle"
+                {...listeners}
+                {...attributes}
+                title="Drag to move task"
+            >
+                <LuGripVertical size={20} />
+            </div>
 
             <h3>{task.title}</h3>
 

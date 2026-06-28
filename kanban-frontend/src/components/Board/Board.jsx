@@ -20,18 +20,21 @@ function Board({ tasks, onEdit }) {
 
             <Column
                 title={KanbanTaskStatus.Todo.label}
+                status={KanbanTaskStatus.Todo.value}
                 tasks={todoTasks}
                 onEdit={onEdit}
             />
 
             <Column
                 title={KanbanTaskStatus.InProgress.label}
+                status={KanbanTaskStatus.InProgress.value}
                 tasks={inProgressTasks}
                 onEdit={onEdit}
             />
 
             <Column
                 title={KanbanTaskStatus.Done.label}
+                status={KanbanTaskStatus.Done.value}
                 tasks={doneTasks}
                 onEdit={onEdit}
             />
