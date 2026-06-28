@@ -26,13 +26,13 @@ This project allows users to:
 - REST APIs
 
 ## Project Structure
-/kanban-frontend
-/kanban-board
+- /kanban-frontend
+- /kanban-board
 
 ## Getting Started
 
 ### Backend
-See kanban-board project README for setup instructions.
+See kanban-board project README file for setup instructions.
 
 ### Frontend
-See kanban-frontend project README for setup instructions.
+See kanban-frontend project README file for setup instructions.
