@@ -21,11 +21,17 @@ function ConfirmationModal({
 
                 <div className="modal-actions">
 
-                    <button onClick={onConfirm}>
+                    <button
+                        className="btn-danger"
+                        onClick={onConfirm}
+                    >
                         Delete
                     </button>
 
-                    <button onClick={onCancel}>
+                    <button
+                        className="btn-secondary"
+                        onClick={onCancel}
+                    >
                         Cancel
                     </button>
 

@@ -159,12 +159,13 @@ button {
 
 .task-card-actions {
     display: flex;
+    justify-content: flex-end;
     gap: 0.5rem;
     margin-top: 1rem;
 }
 
 .task-card-actions button {
-    flex: 1;
+    min-width: 70px;
 }
 
 .drag-handle {
@@ -187,4 +188,54 @@ button {
 
 .drag-handle:hover svg {
     color: #2563eb;
+}
+
+button {
+    border: none;
+    border-radius: 6px;
+    padding: 0.6rem 1rem;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+button:hover {
+    transform: translateY(-1px);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.btn-primary {
+    background-color: #2563eb;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #1d4ed8;
+}
+
+.btn-secondary {
+    background-color: #e5e7eb;
+    color: #111827;
+}
+
+.btn-secondary:hover {
+    background-color: #d1d5db;
+}
+
+.btn-danger {
+    background-color: #dc2626;
+    color: white;
+}
+
+.btn-danger:hover {
+    background-color: #b91c1c;
 }

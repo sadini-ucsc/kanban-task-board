@@ -142,10 +142,16 @@ function TaskModal({ isOpen, onClose, task }) {
 
                     <div className="modal-actions">
 
-                        <button type="submit">{task ? "Update" : "Create"}</button>
+                        <button
+                            type="submit"
+                            className="btn-primary"
+                        >
+                            {task ? "Update" : "Create"}
+                        </button>
 
                         <button
                             type="button"
+                            className="btn-secondary"
                             onClick={onClose}
                         >
                             Cancel

@@ -78,6 +78,7 @@ function TaskCard({ task, onEdit }) {
 
                 <button
                     type="button"
+                    className="btn-secondary"
                     onClick={() => onEdit(task)}
                 >
                     Edit
@@ -85,6 +86,7 @@ function TaskCard({ task, onEdit }) {
 
                 <button
                     type="button"
+                    className="btn-danger"
                     onClick={() => setShowDeleteModal(true)}
                 >
                     Delete

@@ -66,10 +66,11 @@ function KanbanPage() {
 
             <button
                 type="button"
+                className="btn-primary"
                 onClick={handleAddTask}
             >
-                + Add Task
-            </button>
+                Add Task
+            </button>            
 
             <br />
             <br />
