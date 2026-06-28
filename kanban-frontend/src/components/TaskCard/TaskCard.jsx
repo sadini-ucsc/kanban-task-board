@@ -4,6 +4,7 @@ import { LuGripVertical } from "react-icons/lu";
 
 import ConfirmationModal from "../ConfirmationModal/ConfirmationModal";
 import { useTasks } from "../../context/TaskContext";
+import "./TaskCard.css";
 
 function TaskCard({ task, onEdit }) {
 

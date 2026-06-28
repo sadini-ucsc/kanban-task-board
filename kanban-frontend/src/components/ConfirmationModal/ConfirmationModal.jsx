@@ -1,3 +1,5 @@
+import "../TaskModal/TaskModal.css";
+
 function ConfirmationModal({
     isOpen,
     title,

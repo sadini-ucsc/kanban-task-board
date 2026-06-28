@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
+
 import { useTasks } from "../../context/TaskContext";
+import "./TaskModal.css";
 
 function TaskModal({ isOpen, onClose, task }) {
 
@@ -28,6 +30,7 @@ function TaskModal({ isOpen, onClose, task }) {
             setDescription("");
         }
 
+        setErrors({});
         setApiError("");
 
     }, [isOpen, task]);
@@ -115,8 +118,6 @@ function TaskModal({ isOpen, onClose, task }) {
                         value={title}
                         onChange={(e) => setTitle(e.target.value)}
                     />
-
-                    <br/>
 
                     {errors.title && (
                         <div className="error-text">{errors.title}</div>

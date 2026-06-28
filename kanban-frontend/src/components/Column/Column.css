@@ -1,0 +1,7 @@
+.board-column {
+    flex: 1;
+    background: #ffffff;
+    border-radius: 8px;
+    padding: 12px;
+    min-height: 300px;
+}

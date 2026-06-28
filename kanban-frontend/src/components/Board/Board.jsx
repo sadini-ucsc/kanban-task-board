@@ -1,5 +1,6 @@
 import Column from "../Column/Column";
 import { KanbanTaskStatus } from "../../enums/KanbanTaskStatus";
+import "./Board.css";
 
 function Board({ tasks, onEdit }) {
 

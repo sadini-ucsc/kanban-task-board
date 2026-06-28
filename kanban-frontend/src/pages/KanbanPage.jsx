@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { useTasks } from "../context/TaskContext";
 
+import { useTasks } from "../context/TaskContext";
 import Board from "../components/Board/Board";
 import TaskModal from "../components/TaskModal/TaskModal";
+import "./KanbanPage.css";
 
 import { DndContext, closestCorners } from "@dnd-kit/core";
 

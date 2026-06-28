@@ -1,6 +1,8 @@
-import TaskCard from "../TaskCard/TaskCard";
 import { useDroppable } from "@dnd-kit/core";
+
+import TaskCard from "../TaskCard/TaskCard";
 import { KanbanTaskStatus } from "../../enums/KanbanTaskStatus";
+import "./Column.css";
 
 function Column({ title, status, tasks, onEdit }) {
 
