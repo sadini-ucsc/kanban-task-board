@@ -12,6 +12,10 @@ using kanban.application.validators;
 
 var builder = WebApplication.CreateBuilder(args);
 
+var frontendUrls = builder.Configuration
+    .GetSection("FrontendUrls")
+    .Get<string[]>() ?? Array.Empty<string>();
+
 // Configure services
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
@@ -33,7 +37,7 @@ builder.Services.AddCors(options =>
     options.AddPolicy("ReactApp", policy =>
     {
         policy
-            .WithOrigins("http://localhost:5173")
+            .WithOrigins(frontendUrls)
             .AllowAnyHeader()
             .AllowAnyMethod();
     });
