@@ -153,7 +153,7 @@ function TaskModal({ isOpen, onClose, task }) {
                             {task ? UI_TEXT.BUTTONS.UPDATE : UI_TEXT.BUTTONS.CREATE}
                         </button>
 
-                        <button type="button" className="btn-secondary">
+                        <button type="button" className="btn-secondary" onClick={onClose}>
                             {UI_TEXT.BUTTONS.CANCEL}
                         </button>
 
