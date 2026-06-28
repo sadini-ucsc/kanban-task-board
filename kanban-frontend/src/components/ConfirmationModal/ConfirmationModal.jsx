@@ -1,4 +1,5 @@
 import "../TaskModal/TaskModal.css";
+import { UI_TEXT } from "../../constants/uiText";
 
 function ConfirmationModal({
     isOpen,
@@ -27,14 +28,14 @@ function ConfirmationModal({
                         className="btn-danger"
                         onClick={onConfirm}
                     >
-                        Delete
+                        {UI_TEXT.BUTTONS.DELETE}
                     </button>
 
                     <button
                         className="btn-secondary"
                         onClick={onCancel}
                     >
-                        Cancel
+                        {UI_TEXT.BUTTONS.CANCEL}
                     </button>
 
                 </div>

@@ -1,11 +1,11 @@
 import { useState } from "react";
+import { DndContext, closestCorners } from "@dnd-kit/core";
 
 import { useTasks } from "../context/TaskContext";
 import Board from "../components/Board/Board";
 import TaskModal from "../components/TaskModal/TaskModal";
 import "./KanbanPage.css";
-
-import { DndContext, closestCorners } from "@dnd-kit/core";
+import { UI_TEXT } from "../constants/uiText";
 
 function KanbanPage() {
 
@@ -57,7 +57,7 @@ function KanbanPage() {
     return (
         <div className="kanban-page">
 
-            <h1>Kanban Task Board</h1>
+            <h1>{UI_TEXT.KANBAN_BOARD_PAGE_TITLE}</h1>
 
             {error && (
                 <div className="error">
@@ -70,14 +70,14 @@ function KanbanPage() {
                 className="btn-primary"
                 onClick={handleAddTask}
             >
-                Add Task
+                {UI_TEXT.BUTTONS.ADD_TASK}
             </button>            
 
             <br />
             <br />
 
             {loading ? (
-                <p>Loading tasks...</p>
+                <p>{UI_TEXT.MESSAGES.LOADING_TASKS}</p>
             ) : (
                 <DndContext
                     collisionDetection={closestCorners}

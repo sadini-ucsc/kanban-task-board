@@ -5,6 +5,7 @@ import { LuGripVertical } from "react-icons/lu";
 import ConfirmationModal from "../ConfirmationModal/ConfirmationModal";
 import { useTasks } from "../../context/TaskContext";
 import "./TaskCard.css";
+import { UI_TEXT } from "../../constants/uiText";
 
 function TaskCard({ task, onEdit }) {
 
@@ -38,7 +39,7 @@ function TaskCard({ task, onEdit }) {
 
             console.error(error);
 
-            alert("Unable to delete task.");
+            alert(UI_TEXT.MESSAGES.DELETE_ERROR);
         }
     }
 
@@ -52,7 +53,7 @@ function TaskCard({ task, onEdit }) {
                 className="drag-handle"
                 {...listeners}
                 {...attributes}
-                title="Drag to move task"
+                title={UI_TEXT.TOOLTIPS.DRAG_TASK}
             >
                 <LuGripVertical size={20} />
             </div>
@@ -64,16 +65,14 @@ function TaskCard({ task, onEdit }) {
             <div className="task-card-dates">
 
                 <div>
-                    <strong>Created:</strong> {new Date(task.createdAt).toLocaleString()}
+                    <strong>{UI_TEXT.TASK_CARD.CREATED}</strong> {new Date(task.createdAt).toLocaleString()}
                 </div>
 
                 <div>
-                    <strong>Updated:</strong> {new Date(task.updatedAt).toLocaleString()}
+                    <strong>{UI_TEXT.TASK_CARD.UPDATED}</strong> {new Date(task.updatedAt).toLocaleString()}
                 </div>
 
             </div>
-
-            <br />
 
             <div className="task-card-actions">
 
@@ -82,7 +81,7 @@ function TaskCard({ task, onEdit }) {
                     className="btn-secondary"
                     onClick={() => onEdit(task)}
                 >
-                    Edit
+                    {UI_TEXT.BUTTONS.EDIT}
                 </button>
 
                 <button
@@ -90,15 +89,15 @@ function TaskCard({ task, onEdit }) {
                     className="btn-danger"
                     onClick={() => setShowDeleteModal(true)}
                 >
-                    Delete
+                    {UI_TEXT.BUTTONS.DELETE}
                 </button>
 
             </div>
 
             <ConfirmationModal
                 isOpen={showDeleteModal}
-                title="Delete Task"
-                message="Are you sure you want to delete this task?"
+                title={UI_TEXT.MODALS.DELETE_TITLE}
+                message={UI_TEXT.MODALS.DELETE_MESSAGE}
                 onConfirm={handleDelete}
                 onCancel={() => setShowDeleteModal(false)}
             />

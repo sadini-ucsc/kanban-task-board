@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 
 import { useTasks } from "../../context/TaskContext";
 import "./TaskModal.css";
+import { UI_TEXT } from "../../constants/uiText";
 
 function TaskModal({ isOpen, onClose, task }) {
 
@@ -42,13 +43,13 @@ function TaskModal({ isOpen, onClose, task }) {
         const newErrors = {};
 
         if (!title.trim()) {
-            newErrors.title = "Title is required";
+            newErrors.title = UI_TEXT.VALIDATION.TITLE_REQUIRED;
         } else if (title.length > 100) {
-            newErrors.title = "Title must be 100 characters or less";
+            newErrors.title = UI_TEXT.VALIDATION.TITLE_MAX;
         }
 
         if (description.length > 1000) {
-            newErrors.description = "Description must be 1000 characters or less";
+            newErrors.description = UI_TEXT.VALIDATION.DESCRIPTION_MAX;
         }
 
         setErrors(newErrors);
@@ -98,7 +99,7 @@ function TaskModal({ isOpen, onClose, task }) {
             const message =
                 error.response?.data?.error ??
                 error.response?.data?.message ??
-                "Unable to save task.";
+                UI_TEXT.MESSAGES.SAVE_ERROR;
 
             setApiError(message);
         }
@@ -109,12 +110,16 @@ function TaskModal({ isOpen, onClose, task }) {
 
             <div className="modal">
 
-                <h2> {task ? "Edit Task" : "Add Task"} </h2>
+                <h2>
+                    {task
+                        ? UI_TEXT.MODALS.EDIT_TASK_TITLE
+                        : UI_TEXT.MODALS.ADD_TASK_TITLE}
+                </h2>
 
                 <form onSubmit={handleSubmit}>
 
                     <input
-                        placeholder="Title"
+                        placeholder={UI_TEXT.FORM.TITLE_PLACEHOLDER}
                         value={title}
                         onChange={(e) => setTitle(e.target.value)}
                     />
@@ -126,7 +131,7 @@ function TaskModal({ isOpen, onClose, task }) {
                     <br/>
 
                     <textarea
-                        placeholder="Description"
+                        placeholder={UI_TEXT.FORM.DESCRIPTION_PLACEHOLDER}
                         value={description}
                         onChange={(e) => setDescription(e.target.value)}
                     />
@@ -143,19 +148,12 @@ function TaskModal({ isOpen, onClose, task }) {
 
                     <div className="modal-actions">
 
-                        <button
-                            type="submit"
-                            className="btn-primary"
-                        >
-                            {task ? "Update" : "Create"}
+                        <button type="submit" className="btn-primary">
+                            {task ? UI_TEXT.BUTTONS.UPDATE : UI_TEXT.BUTTONS.CREATE}
                         </button>
 
-                        <button
-                            type="button"
-                            className="btn-secondary"
-                            onClick={onClose}
-                        >
-                            Cancel
+                        <button type="button" className="btn-secondary">
+                            {UI_TEXT.BUTTONS.CANCEL}
                         </button>
 
                     </div>
