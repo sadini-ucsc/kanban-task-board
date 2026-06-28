@@ -18,6 +18,7 @@ Frontend application for the Kanban Task Board.
 - Centralized UI text and constants
 
 ## Project Structure
+```
 src/
 ├── api/
 ├── components/
@@ -25,6 +26,7 @@ src/
 ├── context/
 ├── enums/
 ├── pages/
+```
 
 ## Setup
 
