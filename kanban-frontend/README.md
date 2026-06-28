@@ -11,7 +11,7 @@ Frontend application for the Kanban Task Board.
 
 ## Features
 
-- Create, update, delete tasks
+- Create, update, delete (soft delete), view tasks
 - Drag and drop between columns
 - Modal-based task creation/editing
 - Form validation
