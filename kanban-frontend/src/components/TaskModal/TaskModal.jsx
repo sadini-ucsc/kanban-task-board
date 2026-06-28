@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useTasks } from "../../context/TaskContext";
 import "./TaskModal.css";
 import { UI_TEXT } from "../../constants/uiText";
+import { VALIDATION } from "../../constants/kanbanConstants";
 
 function TaskModal({ isOpen, onClose, task }) {
 
@@ -44,11 +45,11 @@ function TaskModal({ isOpen, onClose, task }) {
 
         if (!title.trim()) {
             newErrors.title = UI_TEXT.VALIDATION.TITLE_REQUIRED;
-        } else if (title.length > 100) {
+        } else if (title.length > VALIDATION.TITLE_MAX_LENGTH) {
             newErrors.title = UI_TEXT.VALIDATION.TITLE_MAX;
         }
 
-        if (description.length > 1000) {
+        if (description.length > VALIDATION.DESCRIPTION_MAX_LENGTH) {
             newErrors.description = UI_TEXT.VALIDATION.DESCRIPTION_MAX;
         }
 

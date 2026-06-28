@@ -1,3 +1,5 @@
+import { VALIDATION } from "./kanbanConstants";
+
 export const UI_TEXT = {
     KANBAN_BOARD_PAGE_TITLE: "Kanban Task Board",
 
@@ -29,8 +31,8 @@ export const UI_TEXT = {
 
     VALIDATION: {
         TITLE_REQUIRED: "Title is required",
-        TITLE_MAX: "Title must be 100 characters or less",
-        DESCRIPTION_MAX: "Description must be 1000 characters or less"
+        TITLE_MAX: `Title must be ${VALIDATION.TITLE_MAX_LENGTH} characters or less`,
+        DESCRIPTION_MAX: `Description must be ${VALIDATION.DESCRIPTION_MAX_LENGTH} characters or less`
     },
 
     MESSAGES: {
