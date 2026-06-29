@@ -125,7 +125,7 @@ git push origin feature/branch-name
 - Integration tests
 
 ## System User Guide
-This section explains how to navigate and use the Kanban Board system from a user perspective.
+This section explains how to navigate and use the Kanban Board system from a user perspective. The system is seeded with 3 sample tasks on initial startup for demonstration purposes.
 
 ### 1. Dashboard / Main Board View
 The main screen displays all tasks organized into three columns:
@@ -164,7 +164,7 @@ title, description, created and last updated date & time, action buttons (edit /
 
 <img width="627" height="426" alt="image" src="https://github.com/user-attachments/assets/3c36d3c2-d5a8-4583-bfb1-b560868845d4" />
 
-<img width="562" height="166" alt="image" src="https://github.com/user-attachments/assets/50b5e18a-051a-46ba-b596-fafc3d5ad7de" />
+<img width="592" height="186" alt="image" src="https://github.com/user-attachments/assets/d5e45114-aef9-4def-abdc-6855b680f636" />
 
 ### 5. Moving Tasks Between Columns
 Tasks can be moved between statuses using the drag handle on the top right corner of the task card.
@@ -178,5 +178,5 @@ Tasks can be moved between statuses using the drag handle on the top right corne
 ### 6. Error Handling
 If an operation fails or a validation rule is not met, an error message is displayed and no changes are applied.
 
-<img width="566" height="382" alt="image" src="https://github.com/user-attachments/assets/5442e097-982b-4090-96d0-a5cdf4aed88f" />
+<img width="597" height="406" alt="image" src="https://github.com/user-attachments/assets/c52024e4-8628-42ea-b020-16619ee93098" />
 
