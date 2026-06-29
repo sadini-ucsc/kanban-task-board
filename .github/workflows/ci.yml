@@ -46,4 +46,4 @@ jobs:
         run: dotnet restore ./kanban-board/kanban-board.slnx
 
       - name: Run tests
-        run: dotnet test kanban.application.tests/kanban.application.tests.csproj --configuration Release
+        run: dotnet test ./kanban-board/kanban.application.tests/kanban.application.tests.csproj --configuration Release
