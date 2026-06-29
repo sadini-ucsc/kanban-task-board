@@ -24,6 +24,12 @@ This project allows users to:
 - C#
 - Entity Framework Core
 - REST APIs
+- InMemory database
+
+### Unit Tests
+- xUnit
+- Moq
+- FluentAssertions
 
 ## Project Structure
 - /kanban-frontend
@@ -36,19 +42,6 @@ See kanban-frontend project README file for setup instructions.
 
 ### Backend
 See kanban-board project README file for setup instructions.
-
-uint tests, ci ci to build and run tests after a pr is merged, system document on how to perform each action (you will add screen shots later), asusmptions
-
-### Unit Tests
-The backend includes unit tests covering:
-- Service layer logic (KanbanTaskService)
-- Request validation rules (FluentValidation)
-- Core business logic using mocked dependencies
-
-#### Frameworks used
-- xUnit
-- Moq
-- FluentAssertions
 
 ### Continuous Integration (CI)
 A GitHub Actions pipeline is configured to automatically:
