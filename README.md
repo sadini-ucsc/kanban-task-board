@@ -118,7 +118,7 @@ git push origin feature/branch-name
 - Merge
 - PR must pass CI checks before merging
 
-### Future Improvements
+## Future Improvements
 - Branch protection rules (require CI pass before merge, prevent direct commits to `main` branch)
 - Frontend CI pipeline
 - Static code analysis (SonarQube)
