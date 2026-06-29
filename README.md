@@ -61,13 +61,11 @@ This project allows users to:
         │        Domain Layer              │
         │  - Entities (KanbanTask)         │
         │  - Enums (Status)                │
-        │  - Core business rules           │
         └────────────────┬─────────────────┘
                           │
                           ▼
         ┌──────────────────────────────────┐
         │     Infrastructure Layer         │
-        │  - EF Core DbContext             │
         │  - Repositories                  │
         │  - Data persistence              │
         └──────────────────────────────────┘
