@@ -35,6 +35,44 @@ This project allows users to:
 - /kanban-frontend
 - /kanban-board
 
+## High-Level Architecture
+```
+                ┌──────────────────────┐
+                │     Kanban UI        │
+                │   (React Frontend)   │
+                └─────────┬────────────┘
+                          │ HTTP (REST API)
+                          ▼
+                ┌──────────────────────┐
+                │     Kanban API       │
+                │   (Presentation)     │
+                └─────────┬────────────┘
+                          │
+                          ▼
+        ┌──────────────────────────────────┐
+        │      Application Layer           │
+        │  - Services (Business Logic)     │
+        │  - DTOs                          │
+        │  - Validators (FluentValidation) │
+        └─────────────────┬────────────────┘
+                          │
+                          ▼
+        ┌──────────────────────────────────┐
+        │        Domain Layer              │
+        │  - Entities (KanbanTask)         │
+        │  - Enums (Status)                │
+        │  - Core business rules           │
+        └────────────────┬─────────────────┘
+                          │
+                          ▼
+        ┌──────────────────────────────────┐
+        │     Infrastructure Layer         │
+        │  - EF Core DbContext             │
+        │  - Repositories                  │
+        │  - Data persistence              │
+        └──────────────────────────────────┘
+```
+
 ## Getting Started
 
 ### Frontend
@@ -68,18 +106,18 @@ git commit -m "feat: description"
 git push origin feature/branch-name
 ```
 - Open a pull request
-- Select main as base branch
+- Select `main` as base branch
 - CI runs automatically on PR creation
 - Merge
 - PR must pass CI checks before merging
 
 ## Assumptions
-- A newly created task always starts in the Todo state
+- A newly created task always starts in the `Todo` state
 - The system is designed as a simple Kanban workflow without user authentication or multi-user ownership
-- Task status transitions are not strictly enforced (e.g., tasks can move directly from Todo to Done)
+- Task status transitions are not strictly enforced (e.g., tasks can move directly from `Todo` to `Done`)
 
 ### Future Improvements
-- Branch protection rules (require CI pass before merge, prevent direct commits to main branch)
+- Branch protection rules (require CI pass before merge, prevent direct commits to `main` branch)
 - Frontend CI pipeline
 - Static code analysis (SonarQube)
 - Integration tests
