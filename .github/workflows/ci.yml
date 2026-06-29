@@ -20,9 +20,6 @@ jobs:
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: "10.0.x"
-
-      - name: Find folder structure
-        run: ls
         
       - name: Restore dependencies
         run: dotnet restore ./kanban-board/kanban-board.slnx
@@ -49,4 +46,4 @@ jobs:
         run: dotnet restore ./kanban-board/kanban-board.slnx
 
       - name: Run tests
-        run: dotnet test ./kanban-board/kanban-board.slnx --configuration Release --no-build --verbosity normal
+        run: dotnet test kanban.application.tests/kanban.application.tests.csproj --configuration Release
