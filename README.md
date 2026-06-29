@@ -31,8 +31,61 @@ This project allows users to:
 
 ## Getting Started
 
+### Frontend
+See kanban-frontend project README file for setup instructions.
+
 ### Backend
 See kanban-board project README file for setup instructions.
 
-### Frontend
-See kanban-frontend project README file for setup instructions.
+uint tests, ci ci to build and run tests after a pr is merged, system document on how to perform each action (you will add screen shots later), asusmptions
+
+### Unit Tests
+The backend includes unit tests covering:
+- Service layer logic (KanbanTaskService)
+- Request validation rules (FluentValidation)
+- Core business logic using mocked dependencies
+
+#### Frameworks used
+- xUnit
+- Moq
+- FluentAssertions
+
+### Continuous Integration (CI)
+A GitHub Actions pipeline is configured to automatically:
+- Restore dependencies
+- Build the solution
+- Run all unit tests
+
+#### CI triggers
+The pipeline runs on:
+- Pull requests targeting main
+- Pushes to main
+- Pushes to develop (if added later as a layer before merging to main branch)
+
+### Development Workflow
+- Create a feature branch
+```
+git checkout -b feature/branch-name
+```
+- Commit changes
+```
+git add .
+git commit -m "feat: description"
+git push origin feature/branch-name
+```
+- Open a pull request
+- Select main as base branch
+- CI runs automatically on PR creation
+- Merge
+- PR must pass CI checks before merging
+
+### Assumptions
+- A newly created task always starts in the Todo state
+- The system is designed as a simple Kanban workflow without user authentication or multi-user ownership
+- Task status transitions are not strictly enforced (e.g., tasks can move directly from Todo to Done)
+
+### Future Improvements
+- Branch protection rules (require CI pass before merge, prevent direct commits to main branch)
+- Frontend CI pipeline
+- Static code analysis (SonarQube)
+- Integration tests
