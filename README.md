@@ -51,9 +51,10 @@ A GitHub Actions pipeline is configured to automatically:
 
 ### CI triggers
 The pipeline runs on:
-- Pull requests targeting main
 - Pushes to main
 - Pushes to develop (if added later as a layer before merging to main branch)
+- Pull requests targeting main
+- Pull requests targeting develop
 
 ## Development Workflow
 - Create a feature branch
