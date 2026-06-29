@@ -21,10 +21,10 @@ jobs:
           dotnet-version: "10.0.x"
 
       - name: Restore dependencies
-        run: dotnet restore kanban-board.slnx
+        run: dotnet restore kanban-board.sln
 
       - name: Build solution
-        run: dotnet build kanban-board.slnx --configuration Release --no-restore
+        run: dotnet build kanban-board.sln --configuration Release --no-restore
 
 
   test:
@@ -42,7 +42,7 @@ jobs:
           dotnet-version: "10.0.x"
 
       - name: Restore dependencies
-        run: dotnet restore kanban-board.slnx
+        run: dotnet restore kanban-board.sln
 
       - name: Run tests
-        run: dotnet test kanban-board.slnx --configuration Release --no-build --verbosity normal
+        run: dotnet test kanban-board.sln --configuration Release --no-build --verbosity normal
